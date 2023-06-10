@@ -1,0 +1,297 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Comedor Universitario - Menú</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .sidebar {
+        width: 200px;
+        height: 100vh;
+        background-color: #7c0000;
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar li {
+        margin-bottom: 10px;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .content {
+        margin-left: 200px;
+        padding: 20px;
+        background-color: white;
+        color: black;
+        height: 100vh;
+        overflow-y: scroll;
+      }
+
+      .menu-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .menu-block {
+        margin-bottom: 20px;
+      }
+
+      .menu-block-title {
+        background-color: #7c0000;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+      }
+
+      .menu-block-content {
+        padding: 10px;
+      }
+
+      .reservation-button {
+        background-color: #7c0000;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        cursor: pointer;
+      }
+
+      .info-block {
+        margin-top: 20px;
+        color: black;
+      }
+
+      .menu-section {
+        display: inline-block;
+        width: calc(33.33% - 10px);
+        margin-right: 10px;
+        margin-bottom: 20px;
+      }
+
+      .menu-section-title {
+        background-color: #7c0000;
+        color: white;
+        padding: 10px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .menu-item {
+        margin-bottom: 5px;
+      }
+
+      .menu-image {
+        max-width: 100%;
+        height: auto;
+        margin-top: 10px;
+      }
+      .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .popup-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+      }
+
+      .popup h2 {
+        margin-top: 0;
+      }
+
+      .popup label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      .popup select {
+        margin-bottom: 10px;
+      }
+
+      .popup button {
+        display: block;
+        margin-top: 10px;
+      }
+      #combo1,
+      #combo2 {
+        width: 80%;
+      }
+      .container {
+        background-color: #7c0000;
+        padding: 20px;
+      }
+
+      .container input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      .container button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #7c0000;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <ul>
+        <li><a href="./mainContent.html">🏠 Home</a></li>
+        <li><a href="/Ticket.html">🎟️ Ticket</a></li>
+        <li><a href="/login.html">🔒 Logout</a></li>
+      </ul>
+    </div>
+
+    <div class="content">
+      <h1>Comedor Universitario - Menú</h1>
+      <div id="buscador" class="container">
+        <h1 style="color: #fff">Ingresa tu código</h1>
+        <input
+          type="text"
+          id="codigoEstudiante"
+          placeholder="Código de estudiante"
+        />
+      </div>
+      <p>
+        Fecha: <span id="fechaactual" style="color: black">[Current Date]</span>
+      </p>
+
+      <div class="menu-block">
+        <h2 class="menu-block-title">Desayuno</h2>
+        <div class="menu-block-content" id="menuDesayuno">
+          <div class="menu-item">Bebida: [Bebida]</div>
+          <div class="menu-item">Fruta: [Fruta]</div>
+          <div class="menu-item">Acompañamiento: [Acompañamiento]</div>
+          <button
+            id="reservadesayuno"
+            onclick="reservar(this.id)"
+            class="reservation-button"
+          >
+            Reservar ticket
+          </button>
+        </div>
+      </div>
+
+      <div class="menu-block">
+        <h2 class="menu-block-title">Almuerzo</h2>
+        <div class="menu-block-content" id="menuAlmuerzo">
+          <div class="menu-item">Entrada: [Entrada]</div>
+          <div class="menu-item">Refresco: [Refresco]</div>
+          <div class="menu-item">Plato Fondo: [Plato Fondo]</div>
+          <div class="menu-item">Fruta: [Fruta]</div>
+          <button
+            id="reservaalmuerzo"
+            onclick="reservar(this.id)"
+            class="reservation-button"
+          >
+            Reservar ticket
+          </button>
+        </div>
+      </div>
+
+      <div class="menu-block">
+        <h2 class="menu-block-title">Cena</h2>
+        <div class="menu-block-content" id="menuCena">
+          <div class="menu-item">Plato Fondo: [Plato Fondo]</div>
+          <div class="menu-item">Refresco: [Refresco]</div>
+          <div class="menu-item">Postre: [Postre]</div>
+          <button
+            id="reservacena"
+            onclick="reservar(this.id)"
+            class="reservation-button"
+          >
+            Reservar ticket
+          </button>
+        </div>
+      </div>
+
+      <div class="info-block">
+        <h2>HORARIO DE ATENCIÓN AL COMEDOR:</h2>
+        <p>DESAYUNO: Desde las 7 am (SIN TICKET)</p>
+        <p>ALMUERZO: De 12 pm a 1:40 pm (CON TICKET)</p>
+        <p>CENA: Desde las 5 p.m (CON TICKET)</p>
+      </div>
+
+      <div class="info-block">
+        <h2>HORARIO DE ENTREGA DE TICKETS**:</h2>
+        <p>PARA ALMUERZO: Desde las 7:30 am</p>
+        <p>Para Cena: Desde las 2:00 pm</p>
+        <p>**Los tickets se entregan en el segundo piso del Comedor</p>
+      </div>
+    </div>
+    <div id="popup" class="popup">
+      <div class="popup-content">
+        <div
+          style="
+            display: flex;
+            justify-content: space-around;
+            background-color: #7c0000;
+          "
+        >
+          <h3 style="color: #fff">Reserva de ticket</h3>
+          <button
+            style="border: none; background-color: transparent"
+            onclick="cerrarPopup()"
+          >
+            X
+          </button>
+        </div>
+
+        <label id="tipocomida">Tipo de Comida</label>
+        <label for="combo1">Turno:</label>
+        <select id="combo1">
+          <!-- Opciones para el combo1 -->
+        </select>
+        <label for="combo2">Nivel:</label>
+        <select id="combo2">
+          <option value=""></option>
+          <option value="nivel01">1</option>
+          <option value="nivel02">2</option>
+          <option value="nivel03">3</option>
+          <!-- Opciones para el combo2 -->
+        </select>
+        <label id="restantes">Tickets restantes: </label>
+        <button onclick="reservarTicket()">Reservar</button>
+      </div>
+    </div>
+  </body>
+  <script src="./script.js"></script>
+</html>

@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ticket Reservado</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: white;
+        color: black;
+      }
+
+      .sidebar {
+        width: 200px;
+        height: 100vh;
+        background-color: #7c0000;
+        color: white;
+        padding: 20px;
+        box-sizing: border-box;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+
+      .sidebar ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .sidebar li {
+        margin-bottom: 10px;
+      }
+
+      .sidebar a {
+        text-decoration: none;
+        color: white;
+      }
+
+      .content {
+        margin-left: 200px;
+        padding: 20px;
+      }
+
+      .ticket-block {
+        background-color: #d9d9d9;
+        padding: 20px;
+        color: black;
+        margin-bottom: 20px;
+      }
+
+      .ticket-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+
+      .ticket-title {
+        font-weight: bold;
+      }
+
+      .qr-code {
+        max-width: 100%;
+        height: auto;
+        margin-top: 10px;
+      }
+      .container {
+        background-color: #7c0000;
+        padding: 20px;
+      }
+
+      .container input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        border-radius: 4px;
+        margin-right: 10px;
+      }
+
+      .container button {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #7c0000;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      #ticket-template {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sidebar">
+      <ul>
+        <li><a href="/index.html">🏠 Home</a></li>
+        <li><a href="/Ticket.html">🎟️ Ticket</a></li>
+        <li><a href="#">🔒 Logout</a></li>
+      </ul>
+    </div>
+
+    <div id="cuerpoTicket" class="content">
+      <div id="buscador" class="container">
+        <h1 style="color: #fff">Consulta tu ticket</h1>
+        <input
+          type="text"
+          id="codigoEstudiante"
+          placeholder="Código de estudiante"
+        />
+        <button onclick="consultaTicket()" id="btnConsultar">Consultar</button>
+      </div>
+      <h1>Ticket Reservado</h1>
+      <p>
+        Fecha: <span id="fechaactual" style="color: black">[Current Date]</span>
+      </p>
+
+      <div id="ticket-template" class="ticket-block">
+        <div class="ticket-info">
+          <div class="ticket-title">
+            UNIVERSIDAD NACIONAL MAYOR DE SAN MARCOS
+          </div>
+          <div class="ticket-title" id="numero_ticket">Nro Ticket</div>
+        </div>
+
+        <div class="ticket-info">
+          <div class="ticket-title" id="tipo_comida">
+            TIPO DE COMIDA: [ALMUERZO/DESAYUNO/CENA]
+          </div>
+        </div>
+        <div class="ticket-info">
+          <div class="ticket-title" id="fecha_turno">
+            [Fecha de Hoy] - [Hora del Turno de la Comida]
+          </div>
+        </div>
+
+        <div class="ticket-info">
+          <div class="ticket-title" id="nombre">
+            [Nombres y Apellidos de los Estudiantes]
+          </div>
+        </div>
+        <div class="ticket-info">
+          <div class="ticket-title" id="codigo">[Código de Estudiante]</div>
+        </div>
+
+        <div class="ticket-info">
+          <div class="ticket-title">Nivel: 2</div>
+        </div>
+      </div>
+    </div>
+    <script src="scriptTicket.js"></script>
+  </body>
+</html>
